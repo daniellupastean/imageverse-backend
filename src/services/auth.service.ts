@@ -52,4 +52,14 @@ export class AuthService {
 
     return { message: 'Account successfully created', accessToken: jwt };
   }
+
+  async getUserData(userData) {
+    if (!userData || !userData?.id)
+      return { message: 'Access to the requested resource is forbidden!' };
+    const userId = userData.id;
+    const user = await this.usersRepository.findOne({ id: userId });
+    if (!user) return { message: 'User not found' };
+    delete user.password;
+    return user;
+  }
 }

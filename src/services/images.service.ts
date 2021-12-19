@@ -12,7 +12,8 @@ export class ImagesService {
   ) {}
 
   async uploadImage(pictureData, user) {
-    if (!user || !user?.id) return { message: 'Restricted access' };
+    if (!user || !user?.id)
+      return { message: 'Access to the requested resource is forbidden!' };
 
     const userId = user.id;
     const link = await this.uploadImageToImgbb(pictureData.picture);
@@ -28,5 +29,16 @@ export class ImagesService {
     const result = await imgbbUploader(options);
 
     return result.url;
+  }
+
+  async getImagesByUserId(user) {
+    if (!user || !user?.id)
+      return { message: 'Access to the requested resource is forbidden!' };
+    const userId = user.id;
+    const images = await this.imagesRepository.find({
+      where: { userId },
+    });
+
+    return images;
   }
 }

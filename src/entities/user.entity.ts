@@ -28,12 +28,6 @@ export class User {
   @Column({ default: 'https://i.ibb.co/b2YMFB5/best-linkedin-photos.jpg' })
   profilePictureLink: string;
 
-  @Column({ nullable: true })
-  resetToken: string;
-
-  @Column({ default: 0 })
-  resolvedReportedIssues: number;
-
   @CreateDateColumn()
   createdAt: Date;
 
