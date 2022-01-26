@@ -37,6 +37,7 @@ export class ImagesService {
     const userId = user.id;
     const images = await this.imagesRepository.find({
       where: { userId },
+      order: { createdAt: 'DESC' },
     });
 
     return images;
