@@ -24,7 +24,7 @@ export class ImagesService {
   async uploadImageToImgbb(base64Image: string) {
     const options = {
       apiKey: process.env.IMGBB_API_KEY,
-      expiration: 100,
+      expiration: 86400,
       base64string: base64Image,
     };
     const result = await imgbbUploader(options);
